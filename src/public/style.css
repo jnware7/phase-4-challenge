@@ -1,0 +1,105 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+body {
+    font-size: 1.5em;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: "futura", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #222;
+  }
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .navbar{
+      display: row;
+      width: 100%;
+      height: 6.5rem;
+      background: #fff;
+      z-index: 99;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+  }
+
+
+
+  .navbar-list {
+      list-style: none;
+      margin-bottom: 0;
+
+  }
+
+
+ul {
+   padding-left: 0;
+   margin-top: 0;
+}
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    /*-webkit-padding-start: 40px;*/
+}
+  .navbar-item {
+      position: relative;
+      float: right;
+      margin-bottom: 0;
+  }
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    padding-right: 10px;
+}
+navbar-item-left{
+  position: relative;
+  float: left;
+  margin-bottom: 0;
+}
+.jumbotron {
+  height: 400px;
+}
+.records-div{
+  display:block;
+}
+
+.record-header{
+  border-bottom: 1px solid #eee;
+}
+.album-header{
+  color: green;
+ margin-bottom: 0px;
+}
+.reviews-div{
+
+}
+.reviews-header{
+    border-bottom: 1px solid #eee;
+}
+.review-album-title{
+  color: green;
+  float: left;
+}
+.review-album-date{
+  float:right;
+}
+.review-p{
+  width:600px;
+  padding-left:30px;
+}
+.review-by{
+  color: green;
+  float: right;
+  padding-right:10px;
+}

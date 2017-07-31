@@ -1,0 +1,23 @@
+{
+  "name": "Vinyl",
+  "version": "1.0.0",
+  "description": "A community for record enthusiasts to review their favorite albums.",
+  "scripts": {
+    "start": "node ./src/server",
+    "start:dev": "nodemon ./src/server.js",
+    "db:create": "createdb vinyl",
+    "db:drop": "dropdb vinyl",
+    "db:schema": "psql -d vinyl < schema.sql",
+    "db:seed": "psql -d vinyl < albums.sql"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "hbs": "^4.0.1",
+    "pg": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

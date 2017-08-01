@@ -1,8 +1,15 @@
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
 }
+
+a:link, a:visited{
+  color: black;
+  text-decoration: none;
+}
+// index
 body {
     font-size: 1.5em;
     line-height: 1.6;
@@ -39,17 +46,16 @@ body {
 
 
 ul {
-   padding-left: 0;
+   padding-right: 0;
    margin-top: 0;
 }
-ul, menu, dir {
+ul {
     display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-    /*-webkit-padding-start: 40px;*/
 }
   .navbar-item {
       position: relative;
@@ -60,13 +66,9 @@ ul, menu, dir {
 li {
     display: list-item;
     text-align: -webkit-match-parent;
-    padding-right: 10px;
+    padding-right: 5px;
 }
-navbar-item-left{
-  position: relative;
-  float: left;
-  margin-bottom: 0;
-}
+
 .jumbotron {
   height: 400px;
 }
@@ -103,3 +105,58 @@ navbar-item-left{
   float: right;
   padding-right:10px;
 }
+//albums page
+
+.review-page-head{
+  float: left;
+}
+.add-review-button{
+    float: right;
+}
+.jumbotron-miny{
+  height: 100px;
+}
+.album-title-header{
+  font-size: 3em;
+}
+.profile-img{
+  border: 3px solid black;
+  width: 251px;
+  height:251px;
+ margin-top: 100px;
+}
+
+.header-album-title{
+  padding-top: 70px;
+  color: green;
+}
+//profile
+
+.profile-album-title{
+    float: left;
+}
+.profile-album-date{
+      float: right;
+}
+.user-info-div{
+  padding-top: 60px;
+}
+.reviews-div{
+
+}
+.fa-fa-trash-o{
+  font-size: 2em;
+}
+.new-review-form > textarea{
+height:400px;
+}
+.new-review-form-title{
+    padding-top: 100px;
+    color:green;
+}
+//album
+.review-p-album{
+  width:700px;
+  padding-left:100px;
+}
+//auth forms

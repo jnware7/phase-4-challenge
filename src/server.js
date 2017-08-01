@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const   {getAlbums, getAlbumsByID} = require('./database/database')
+const   {getAlbums, getAlbumsByID, getAlbumByTitle} = require('./database/database')
 const app = express()
 const hbs = require('hbs');
 
@@ -59,56 +59,69 @@ app.get('/login', (request, response) => {
   })
 })
 
-
-app.get('/album', (request, response) => {
-  getAlbums((error, albums) => {
+app.get('/albums/:albumID', (request, response) => {
+  const {albumID} = request.params
+  getAlbumsByID(albumID, (error, albums) => {
     if (error) {
       response.status(500).render('error', { error: error })
     } else {
-      response.render('album', { albums: albums })
+      response.render('album')
     }
   })
 })
 
-app.get('/profile', (request, response) => {
-  getAlbums((error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      response.render('profile', { albums: albums })
-    }
-  })
-})
 
-app.get('/review', (request, response) => {
-  getAlbums((error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      response.render('newReview', { albums: albums })
-    }
-  })
-})
-
-app.get('/signup', (request, response) => {
-  getAlbums((error, albums) => {
-    if (error) {
-      response.status(500).render('error', { error: error })
-    } else {
-      response.render('signup', { albums: albums })
-    }
-  })
-})
-
-// app.get('/albums/:albumID', (request, response) => {
-//   const albumID = request.params.albumID
-//
-//   database.getAlbumsByID(albumID, (error, albums) => {
+// app.get('/album', (request, response) => {
+//   getAlbums((error, albums) => {
 //     if (error) {
 //       response.status(500).render('error', { error: error })
 //     } else {
+//       response.render('album', { albums: albums })
+//     }
+//   })
+// })
+//
+// app.get('/profile', (request, response) => {
+//   getAlbums((error, albums) => {
+//     if (error) {
+//       response.status(500).render('error', { error: error })
+//     } else {
+//       response.render('profile', { albums: albums })
+//     }
+//   })
+// })
+//
+// app.get('/review', (request, response) => {
+//   const albumTitle = request.params.albumTitle
+//   getAlbumByTitle(albumTitle, (error, albums) => {
+//     if (error) {
+//       response.status(500).render('error', { error: error })
+//     } else {
+//       console.log('album', album)
 //       const album = albums[0]
-//       response.render('album', { album: album })
+//       response.render('newReview', { album: album })
+//     }
+//   })
+// })
+//
+// app.get('/signup', (request, response) => {
+//   getAlbums((error, albums) => {
+//     if (error) {
+//       response.status(500).render('error', { error: error })
+//     } else {
+//       response.render('signup', { albums: albums })
+//     }
+//   })
+// })
+
+// app.get('/albums/:albumID', (request, response) => {
+//   const {albumID} = request.params
+// console.log(getAlbumsByID(albumID))
+//   getAlbumsByID(albumID, (error, albums) => {
+//     if (error) {
+//       response.status(500).render('error', { error: error })
+//     } else {
+//       response.render('album', { album: album[0] })
 //     }
 //   })
 // })

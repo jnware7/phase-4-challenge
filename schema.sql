@@ -5,7 +5,7 @@ CREATE TABLE users(
   username TEXT,
   password TEXT,
   email TEXT,
-  user_image TEXT,
+  user_image TEXT DEFAULT "http://via.placeholder.com/250x250",
   logged TIMESTAMP DEFAULT now()
 );
 

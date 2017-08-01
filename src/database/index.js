@@ -2,19 +2,26 @@ const pgp = require('pg-promise')();
 const dbName = 'vinyl'
 const connectionString = process.env.DATABASE_URL || `postgres://localhost:5432/${dbName}`
 const db = pgp(connectionString);
+const bcrypt = require('bcrypt');
+const saltRounds = 12;
 
+const GET_ALL_USERS_REVIEWS = `SELECT  a.title, r.review,r.logged, u.username FROM albums a LEFT JOIN reviews r ON a.id = r.albums_id LEFT JOIN users u ON  r.users_id = u.id WHERE u.id = $1`;
+const getAllUsersReviews = (users_id) => {
+  console.log('im in here ====>',getAllReviews)
+  return db.any(GET_ALL_USERS_REVIEWS, [users_id]);
+};
 const GET_ALL_ALBUMS = `SELECT * FROM albums`;
 const getAllAlbums = () => {
   return db.many(GET_ALL_ALBUMS, []);
 };
 
-const GET_ALL_REVIEWS = `SELECT * FROM albums LIMIT 3`;
+const GET_ALL_REVIEWS = `SELECT a.artist, a.title, r.review,r.logged, u.username, u.email FROM albums a LEFT JOIN reviews r ON a.id = r.albums_id LEFT JOIN users u ON  r.users_id = u.id   WHERE review is not NULL LIMIT 3`;
 const getAllReviews = () => {
   return db.many(GET_ALL_REVIEWS, []);
 };
 
 const GET_ALBUMS_BY_ID = `SELECT * FROM albums WHERE id = $1`;
-const getAlbumsByID = (id) => {
+const getAlbumsById = (id) => {
   return db.one(GET_ALBUMS_BY_ID, [id]);
 };
 
@@ -23,10 +30,6 @@ const getAnAlbumsReviews = (albums_id) => {
   return db.any(GET_AN_ALBUMS_REVIEWS, [albums_id]);
 };
 
-const GET_ALL_USERS_REVIEWS = `SELECT * FROM reviews WHERE users_id = $1`;
-const getAlbumsByID = (users_id) => {
-  return db.any(GET_ALBUMS_BY_ID, [users_id]);
-};
 const DELETE_REVIEW = `DELETE FROM reviews WHERE id = $1 RETURNING *`;
 const deleteReviewById = (id) => {
     return db.one(DELETE_REVIEW, [id]);
@@ -37,11 +40,11 @@ const deleteReviewById = (id) => {
     return db.one(NEW_REVIEW, [options.albums_id, options.review, options.users_id, options.logged]);
   };
 
-  const CREATE_USER = `INSERT INTO users (name, password, email) VALUES($1, $2, $3) RETURNING *`;
-  const createUser = (name,password,email) => {
+  const CREATE_USER = `INSERT INTO users (username, password, email) VALUES($1, $2, $3) RETURNING *`;
+  const createUser = (username,password,email) => {
     return bcrypt.hash(password, saltRounds)
     .then(function(hash) {
-      return db.one(CREATE_USER, [name, hash, email]);
+      return db.one(CREATE_USER, [username, hash, email]);
     });
   };
 
@@ -50,9 +53,9 @@ const deleteReviewById = (id) => {
     return db.one(GET_USER_BY_ID, [id]);
   };
 
-const FIND_BY_EMAIL = `SELECT * FROM users WHERE email = $1`;
-const findByEmail = (email) => {
-  return db.one(FIND_BY_EMAIL, [email]);
+const FIND_BY_USERNAME = `SELECT * FROM users WHERE username = $1`;
+const findByUsername = (username) => {
+  return db.one(FIND_BY_USERNAME, [username]);
 };
 
 
@@ -62,14 +65,15 @@ const getUserInfoById= (id) => {
 };
 
 module.exports = {
-  getAlbums,
+  getAllAlbums,
   getAllReviews,
   getAlbumsById,
   getAnAlbumsReviews,
+  getAllUsersReviews,
   deleteReviewById,
   newReview,
   createUser,
   getUserById,
-  findByEmail,
+  findByUsername,
   getUserInfoById
 }

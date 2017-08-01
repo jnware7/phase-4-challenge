@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>Vinyl</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;**script-src 'self' http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval';** ">
   <link rel="stylesheet" type="text/css" href="/skeleton.css">
   <link rel="stylesheet" type="text/css" href="/normalize.css">
   <link rel="stylesheet" type="text/css" href="/style.css">
-  <script type="text/javascript" src="/script.js"></script>
 </head>
 <body>
  <div class='container'>
@@ -16,26 +16,29 @@
        <div class='one-third column records-div' >
          <h1 class='record-header'>Records</h1>
          {{#each albums}}
-         <p class='album-header'><strong><a href=/albums/{{id}}>{{title}}</a></strong></p>
-         <p><i>{{artist}}</i></p>
-         <br><br>
-           {{/each}}
+           <p class='album-header'><strong><a href=/albums/{{id}}>{{title}}</a></strong></p>
+           <p><i>{{artist}}</i></p>
+           <br><br>
+         {{/each}}
        </div>
        <div class='two-thirds column reviews-div'>
          <h1 class='reviews-header'>Recent Reviews</h1>
+         {{#each reviews}}
          <div class="row">
-           <span class='review-album-title'>CHRONIC</span>
-           <span class='review-album-date'> <i>07/03/17</i></span>
+           <span class='review-album-title'>{{title}}</span>
+           <span class='review-album-date'> <i>{{logged}}</i></span>
          </div>
          <div class='review-p'>
-          Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
+           {{review}}
         </div>
         <div class='review-by'>
-          <i>by Jeffrey Ware</i>
+          <i>by {{username}}</i>
         </div>
          <br>
+          {{/each}}
        </div>
      </div>
  </div>
+ <script type="text/javascript" src="/script.js"></script>
 </body>
 </html>

@@ -10,14 +10,15 @@
   <body>
     {{> nav2}}
     <div class='container'>
-      <form style="  padding-left: 350px; ">
+      <form method="post" action="/login" style="padding-left: 350px;">
         <label class='new-review-form-title'>
           <h1>Sign In</h1>
+          <p style="color:red;"> {{message}}</p>
         </label>
-        <label for="exampleEmailInput">Email</label>
-        <input class="" type="email" placeholder="test@mailbox.com">
-        <label for="exampleEmailInput">Password</label>
-        <input class="" type="password" placeholder="*********"><br>
+        <label >Username</label>
+        <input class="" type="text" placeholder="Name..." name="username">
+        <label >Password</label>
+        <input class="" type="password" placeholder="*********" name="password"><br>
         <br><input class="button" type="submit" value="Submit">
       </form>
     </div>

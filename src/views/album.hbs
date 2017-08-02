@@ -22,8 +22,8 @@
         <span class='add-review-button'><a href=/newreview class="button">Add Review</a></span>
         <span class='review-page-head'><h1> Reviews</h1></span>
      </div>
+       {{#each reviews}}
      <div class="row">
-      {{#each reviews}}
        <span class='review-album-title'>{{this.title}}</span>
        <span class='review-album-date'> <i>{{this.logged}}</i></span>
      </div>

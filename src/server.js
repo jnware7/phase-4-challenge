@@ -33,9 +33,9 @@ hbs.registerPartial('nav',`<nav class='navbar'>
         <li class='navbar-item-left'>
           <h3>Vinyl</h3>
         <li>
-      <li class='navbar-item'><a href='/signup'>login</a><li>
+      <li class='navbar-item'><a href='/signup'>Log In</a><li>
         <li class='navbar-item'>/<li>
-      <li class='navbar-item'><a href='/login'>signin</a><li>
+      <li class='navbar-item'><a href='/login'>Sign In</a><li>
     </ul>
    </div>
  </nav>`);
@@ -46,9 +46,9 @@ hbs.registerPartial('nav',`<nav class='navbar'>
          <li class='navbar-item-left'>
            <h3>Vinyl</h3>
          <li>
-       <li class='navbar-item'><a href='/signup'>profile</a><li>
+       <li class='navbar-item'><a href='/signup'>Profile</a><li>
        <li class='navbar-item'>/<li>
-       <li class='navbar-item'><a href='/logout'>signout</a><li>
+       <li class='navbar-item'><a href='/logout'>Signout</a><li>
      </ul>
     </div>
   </nav>`);
@@ -58,9 +58,9 @@ hbs.registerPartial('nav',`<nav class='navbar'>
           <li class='navbar-item-left'>
             <h3>Vinyl</h3>
           <li>
-        <li class='navbar-item'><a href='/logout'>signout</a><li>
+        <li class='navbar-item'><a href='/logout'>Signout</a><li>
         <li class='navbar-item'>/<li>
-        <li class='navbar-item'><a href='/'>home</a><li>
+        <li class='navbar-item'><a href='/'>Home</a><li>
       </ul>
      </div>
    </nav>`);

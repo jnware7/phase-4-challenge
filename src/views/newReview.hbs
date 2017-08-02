@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vinyl: NewReview</title>
+    <link rel="stylesheet" type="text/css" href="/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body>
+    {{> nav2}}
+    <center>
+      <div class='container'>
+        <form method="post" action="/newreview" class="new-review-form">
+            <label class='new-review-form-title'>
+              <h1>New Review for</h1>
+                  <label>
+                    <select name="albums_dropdown">
+                      <option value="0" name="">Choose Album</option>
+                      <option value="1" name="Malibu">Malibu</option>
+                      <option value="2" name="A Seat at the">A Seat at the Table</option>
+                      <option value="3" name="Melodrama">Melodrama</option>
+                      <option value="4" name="In Rainbows">In Rainbows</option>
+                    </select>
+                  </label>
+            </label>
+          <textarea class="u-full-width" placeholder="Your review here …" name="review"></textarea>
+          <input class="button" type="submit" value="Submit">
+      </form>
+    </div>
+  </center>
+  </body>
+</html>

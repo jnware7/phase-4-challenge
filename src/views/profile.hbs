@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vinyl : {{user.username}}'s Profile </title>
+    <link rel="stylesheet" type="text/css" href="/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="/normalize.css">
+    <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script type="text/javascript" src="/script.js"></script>
+  </head>
+  <body>
+    <div class='container'>
+        {{> nav3}}
+        <div class='row'>
+          <div class='one-third column'>
+            <div class='profile-img'>
+              <a href="https://placeholder.com"><img src={{user_image}}></a>
+            </div>
+          </div>
+          <div class='two-thirds column profile-review'>
+            <div class='user-info-div'>
+              <h1>{{user.username}}</h1>
+              <p><i>Email : </i>{{user.email}}</p>
+              <p><i>Date Joined :  </i>{{user.logged}}</p>
+           </div>
+            <div class='reviews-div'>
+              <h1 class='reviews-header'>Reviews</h1>
+
+              <div class="row">
+                {{#each reviews}}
+                <span class='profile-album-title'>{{title}}</span>
+                <span class='profile-album-date'> {{email}}</span>
+              </div>
+              <div class='review-p'>
+            {{review}}
+             </div>
+             <div class='review-by'>
+               <i>by {{username}}</i>
+             </div>
+             <div>
+               <a href=/delete/{{id}}>
+                 <i class="fa fa-trash-o delete" aria-hidden="true"> </i>
+               </a>
+             </div>
+              <br>
+            {{/each}}
+            </div>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

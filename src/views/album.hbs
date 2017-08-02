@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vinyl : {{#each reviews}}{{title}}{{/each}}</title>
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="/normalize.css">
+  <script type="text/javascript" src="/script.js"></script>
+</head>
+<body>
+ <div class='container'>
+  {{> nav}}
+   <div class="row header-album-title">
+     <div class="two-thirds column"></div>
+     {{#each reviews}}
+       <div class="five columns"> <h1 class='album-title-header'>{{title}}</h1></div>
+     {{/each}}
+   </div>
+    <div class="row">
+   <div class='two-thirds column reviews-div'>
+     <div class="row">
+        <span class='add-review-button'><a href=/newreview class="button">Add Review</a></span>
+        <span class='review-page-head'><h1> Reviews</h1></span>
+     </div>
+       {{#each reviews}}
+     <div class="row">
+       <span class='review-album-title'>{{this.title}}</span>
+       <span class='review-album-date'> <i>{{this.logged}}</i></span>
+     </div>
+     <div class='review-p'>
+      {{this.review}}
+    </div>
+    <div class='review-by'>
+      <i>by {{this.username}}</i>
+    </div>
+     <br>
+        {{/each}}
+   </div>
+ </div>
+</body>
+</html>

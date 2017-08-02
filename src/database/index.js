@@ -32,6 +32,7 @@ const getAnAlbumsReviews = (albums_id) => {
 
 const DELETE_REVIEW = `DELETE FROM reviews WHERE id = $1`;
 const deleteReviewById = (review_id) => {
+  console.log('DB HANDLER FUNCTION')
     return db.none(DELETE_REVIEW, [review_id]);
   };
 

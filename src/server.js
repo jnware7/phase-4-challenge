@@ -60,7 +60,7 @@ hbs.registerPartial('nav',`<nav class='navbar'>
           <li>
         <li class='navbar-item'><a href='/logout'>signout</a><li>
         <li class='navbar-item'>/<li>
-        <li class='navbar-item'><a href='/index'>home</a><li>
+        <li class='navbar-item'><a href='/'>home</a><li>
       </ul>
      </div>
    </nav>`);
@@ -106,13 +106,13 @@ router.get('/albums/:albumId', (req, res) => {
 })
 
 
-// router.get('/', (req, res) => {
-//   if (req.user) {
-//     res.redirect('/profile')
-//   } else {
-//     res.render('signup');
-//   }
-// });
+router.get('/', (req, res) => {
+  if (req.user) {
+    res.redirect('/profile')
+  } else {
+    res.render('signup');
+  }
+});
 
 router.get('/signup', (req, res) => {
     res.render('signup');
@@ -144,13 +144,13 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-// router.use((req, res, next) => {
-//   if(req.user) {
-//     next()
-//   } else {
-//     res.redirect('/')
-//   }
-// })
+router.use((req, res, next) => {
+  if(req.user) {
+    next()
+  } else {
+    res.redirect('/')
+  }
+})
 
 
 router.get('/newreview', (req, res) => {
@@ -198,7 +198,8 @@ router.get('/profile', (req, res) => {
 })
 
 router.get('/delete/:reviewId', (req, res) => {
-  const reviewId = req.param.id
+  const reviewId = req.params.reviewId
+  console.log('DELETE STUFF route', reviewId)
   deleteReviewById(reviewId)
   .then(() => {
     res.redirect('/profile')
@@ -207,10 +208,10 @@ router.get('/delete/:reviewId', (req, res) => {
 
 
 app.use('/', router)
-//
-// app.use((request, response) => {
-//   response.status(404).render('not_found')
-// })
+
+app.use((request, response) => {
+  response.status(404).render('not_found')
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

@@ -33,12 +33,16 @@
                 <span class='profile-album-date'> {{email}}</span>
               </div>
               <div class='review-p'>
-               {{review}}
+            {{review}}
              </div>
              <div class='review-by'>
                <i>by {{username}}</i>
              </div>
-             <div><i class="fa fa-trash-o delete" aria-hidden="true"></i></div>
+             <div>
+               <a href=/delete/{{id}}>
+                 <i class="fa fa-trash-o delete" aria-hidden="true"> </i>
+               </a>
+             </div>
               <br>
             {{/each}}
             </div>

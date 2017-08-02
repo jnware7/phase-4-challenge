@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vinyl : </title>
+  <title>Vinyl : {{#each reviews}}{{title}}{{/each}}</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   <link rel="stylesheet" type="text/css" href="/skeleton.css">
   <link rel="stylesheet" type="text/css" href="/normalize.css">
@@ -12,26 +12,29 @@
   {{> nav}}
    <div class="row header-album-title">
      <div class="two-thirds column"></div>
-       <div class="five columns"> <h1 class='album-title-header'>{{album.title}}</h1></div>
-
+     {{#each reviews}}
+       <div class="five columns"> <h1 class='album-title-header'>{{title}}</h1></div>
+     {{/each}}
    </div>
     <div class="row">
    <div class='two-thirds column reviews-div'>
      <div class="row">
-        <span class='add-review-button'><a href=/review/{{album.title}} class="button">Add Review</a></span>
+        <span class='add-review-button'>{{#each reviews}}<a href=/newreview class="button">Add Review</a>{{/each}} </span>
         <span class='review-page-head'><h1> Reviews</h1></span>
      </div>
      <div class="row">
-       <span class='review-album-title'>CHRONIC</span>
-       <span class='review-album-date'> <i>07/03/17</i></span>
+      {{#each reviews}}
+       <span class='review-album-title'>{{this.title}}</span>
+       <span class='review-album-date'> <i>{{this.logged}}</i></span>
      </div>
      <div class='review-p'>
-      Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb.
+      {{this.review}}
     </div>
     <div class='review-by'>
-      <i>by Jeffrey Ware</i>
+      <i>by {{this.username}}</i>
     </div>
      <br>
+        {{/each}}
    </div>
  </div>
 </body>

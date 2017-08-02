@@ -23,9 +23,10 @@
        </div>
        <div class='two-thirds column reviews-div'>
          <h1 class='reviews-header'>Recent Reviews</h1>
+
          {{#each reviews}}
          <div class="row">
-           <span class='review-album-title'>{{title}}</span>
+           <span class='review-album-title'><a href=/albums/{{id}}>{{title}}</a></span>
            <span class='review-album-date'> <i>{{logged}}</i></span>
          </div>
          <div class='review-p'>

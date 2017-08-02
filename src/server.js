@@ -46,28 +46,28 @@ hbs.registerPartial('nav',`<nav class='navbar'>
          <li class='navbar-item-left'>
            <h3>Vinyl</h3>
          <li>
-       <li class='navbar-item'>profile<li>
+       <li class='navbar-item'><a href='/signup'>profile</a><li>
        <li class='navbar-item'>/<li>
-       <li class='navbar-item'>signout<li>
+       <li class='navbar-item'><a href='/logout'>signout</a><li>
      </ul>
     </div>
   </nav>`);
+  hbs.registerPartial('nav3',`<nav class='navbar'>
+    <div class='container'>
+      <ul class='navbar-list'>
+          <li class='navbar-item-left'>
+            <h3>Vinyl</h3>
+          <li>
+        <li class='navbar-item'><a href='/logout'>signout</a><li>
+        <li class='navbar-item'>/<li>
+        <li class='navbar-item'><a href='/index'>home</a><li>
+      </ul>
+     </div>
+   </nav>`);
 
  app.use(express.static('src/public'));
  app.set('views', './src/views');
  app.set('view engine', 'hbs');
-
-
-// router.get('/', function(req,res){
-//   getAllAlbums()
-//   .then((albums)=>{
-//   res.render('index' , {
-//        albums:albums
-//   })
-//  }).catch((err) => {
-//       console.log('errored1',err);
-//   });
-// });
 
 router.get('/', (req, res) => {
   Promise.all([
@@ -86,13 +86,33 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/', (req, res) => {
-  if (req.user) {
-    res.redirect('/profile')
-  } else {
-    res.render('index');
-  }
-});
+router.get('/albums/:albumId', (req, res) => {
+  const {albumId} = req.params
+  Promise.all([
+    getAlbumsById(albumId),
+    getAnAlbumsReviews(albumId)
+  ])
+  .then(results => {
+    console.log(results)
+    const albums = results[0]
+    const reviews = results[1]
+    res.render('album', {
+      albums: albums,
+      reviews: reviews
+    })
+  }).catch( err => {
+    console.error(err)
+  })
+})
+
+
+// router.get('/', (req, res) => {
+//   if (req.user) {
+//     res.redirect('/profile')
+//   } else {
+//     res.render('signup');
+//   }
+// });
 
 router.get('/signup', (req, res) => {
     res.render('signup');
@@ -124,18 +144,40 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-router.use((req, res, next) => {
-  if(req.user) {
-    next()
-  } else {
-    res.redirect('/login')
-  }
+// router.use((req, res, next) => {
+//   if(req.user) {
+//     next()
+//   } else {
+//     res.redirect('/')
+//   }
+// })
+
+
+router.get('/newreview', (req, res) => {
+    res.render('newReview');
+});
+
+router.post('/newreview', (req, res) => {
+  const albums_id = req.body.albums_dropdown
+  const users_id = req.user.id
+  const review = req.body.review
+
+  console.log('USERS_ID: ===>', req.user);
+
+  newReview({
+    albums_id: albums_id,
+    users_id: users_id,
+    review: review
+  })
+  .then(() => {
+    res.redirect('/profile')
+  })
 })
 
 router.get('/logout', (req,res) => {
   req.logout()
   res.redirect('/')
-})
+});
 
 router.get('/profile', (req, res) => {
   const userid = req.user.id
@@ -146,7 +188,6 @@ router.get('/profile', (req, res) => {
   .then(results => {
     const user = results[0]
     const reviews = results[1]
-console.log('reviews===>', reviews)
     res.render('profile', {
       user: user,
       reviews: reviews
@@ -155,8 +196,18 @@ console.log('reviews===>', reviews)
     console.error(err)
   })
 })
-app.use('/', router)
 
+router.get('/delete/:reviewId', (req, res) => {
+  const reviewId = req.param.id
+  deleteReviewById(reviewId)
+  .then(() => {
+    res.redirect('/profile')
+  })
+})
+
+
+app.use('/', router)
+//
 // app.use((request, response) => {
 //   response.status(404).render('not_found')
 // })

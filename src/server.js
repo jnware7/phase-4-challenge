@@ -34,7 +34,7 @@ hbs.registerPartial('nav',`<nav class='navbar'>
           <h3>Vinyl</h3>
         <li>
       <li class='navbar-item'><a href='/signup'>Log In</a><li>
-        <li class='navbar-item'>/<li>
+        <li class='navbar-item' style='color:#eee;'>/<li>
       <li class='navbar-item'><a href='/login'>Sign In</a><li>
     </ul>
    </div>
@@ -47,7 +47,7 @@ hbs.registerPartial('nav',`<nav class='navbar'>
            <h3>Vinyl</h3>
          <li>
        <li class='navbar-item'><a href='/signup'>Profile</a><li>
-       <li class='navbar-item'>/<li>
+       <li class='navbar-item' style='color:#eee;'>/<li>
        <li class='navbar-item'><a href='/logout'>Signout</a><li>
      </ul>
     </div>
@@ -59,7 +59,7 @@ hbs.registerPartial('nav',`<nav class='navbar'>
             <h3>Vinyl</h3>
           <li>
         <li class='navbar-item'><a href='/logout'>Signout</a><li>
-        <li class='navbar-item'>/<li>
+        <li class='navbar-item 'style='color:#eee;' >/<li>
         <li class='navbar-item'><a href='/'>Home</a><li>
       </ul>
      </div>
